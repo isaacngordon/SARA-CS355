@@ -1,0 +1,66 @@
+html{
+    font-family: 'Courier New';
+    background-color: #000;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+}
+  
+nav li {
+    float: left;
+}
+  
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+  /* Change the link color to #111 (black) on hover */
+nav li a:hover {
+    background-color: rgb(0, 160, 0);
+}
+
+  /*Drop down menus */
+  .dropdown{
+      position: relative;
+      display: inline-block;
+  }
+
+
+
+  .drop-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .drop-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown:hover .drop-content {
+    display: block;
+  }
+  .dropBtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
