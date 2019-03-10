@@ -26,9 +26,9 @@ As we learn how search engines function, we will use the Google Search API to of
 ---
 
 ## Current Issues
-- Submenu items not responsive
+- Submenu items not properly responsive
 - Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
-- 
+- Media query changes not working in Safari but okay in Chrome.
 
 ## TODO://By Wednesday, March 13
 - [x] Home Page
