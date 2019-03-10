@@ -187,7 +187,7 @@ footer p{
 
 /* Media Queries */
 
-@media (min-width: 1000px){
+@media screen and (min-width: 1000px){
   .design-section .text-art{
     width: auto;
     display: inline-block;
@@ -195,7 +195,7 @@ footer p{
   }
 }
 
-@media (max-width: 500px){
+@media screen and (max-width: 500px){
   :root{
     /* background-color: yellow;  */
   }
