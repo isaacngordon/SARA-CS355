@@ -23,4 +23,24 @@ As we learn how search engines function, we will use the Google Search API to of
 - CSS3
 - Javascript
 
+---
 
+## Current Issues
+- Submenu items not responsive
+- Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
+- 
+
+## TODO://By Wednesday, March 13
+- [x] Home Page
+- [x] Main style sheet
+- [x] Menu
+- - [x] Top level items
+- - [x] Sub menu items 
+- - [x] Responsive Hamburger 
+- [x] Course 
+- [x] File Structure
+- [ ] Fix above issues
+- [ ] Hard Code Dummy Results
+- [ ] Bio, github, email, etc for Isaac and Ron
+- [ ] Get Browser Info for its page
+- - [ ] link by id to all the info on singular html page (browswer.html)
