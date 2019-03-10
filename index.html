@@ -3,41 +3,154 @@
 <head>
 <title>Home | SARA CS 355</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="test.css">
+<link rel="stylesheet" href="main-style.css">
 <script src="home-script.js"></script>
 </head>
 
+<header>
+		<div class="navbar">
+				<nav class="menu">
+					<ul>
+						<li>
+						<a href="index.html">Home</a>
+						</li>
+						<li class="dropdown">
+							<a class="dropbtn" href="course.html">Course</a>
+							<div class="dropdown-content">
+								<a target="_blank" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019">Zybook</a>
+							</div>
+						</li>
+						<li class="dropdown">
+							<a class="dropbtn"  href="search.html">Search</a>
+							<div class="dropdown-content">
+								<a href="#">Dummy Search</a>
+								<a href="#">File Search</a>
+								<a href="#">Google API Search</a>
+								<a href="#">The Real Deal Search</a>
+							</div>
+						</li>  
+						<li class="dropdown">
+							<a class="dropbtn" href="browser.html">Browser</a>
+							<div class="dropdown-content">
+								<a href="browser.html/#browser-info">Browser Info</a>
+								<a href="browser.html/#window-info">Window Info</a>
+								<a href="browser.html/#screen-info">Screen Info</a>
+								<a href="browser.html/#location-info">Location Info</a> 
+							</div>
+						</li>
+						<li class="dropdown">
+							<a class="dropbtn" href="about.html">About</a>
+							<div class="dropdown-content">
+								<a href="about-resources/isaac-gordon.html">Isaac Gordon</a>
+								<a href="about-resources/ron-refael.html">Ron Refael</a> 
+								<a href="about-resources/contact-us.html">Contact Us</a>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		
+			<!--Text Art Design -->
+			<section class="design-section" id="sara-design">
+				<p class="text-art" id="sara">
+SSSSSSS      A      RRRRRR       A   
+SS          A A     R    RR     A A  
+  SSS      A   A    RRRRRR     A   A 
+     SS   AAAAAAA   R    R    AAAAAAA
+SSSSSSS   A     A   R     R   A     A
+				</p>
+				<p class="text-art" id="355">
+3333333   5555555   5555555  
+      3   5         5        
+  33333   5555555   5555555  
+      3         5         5  
+3333333   5555555   5555555 <span class="console-dash">_</span>
+				</p>
+			</section>
+
+</header>
+
 <body>
-	<nav class="menu">
-		<ul>
-  		<li><a href="index.html">Home</a></li>
-			<li class="dropdown">
-				<a href="course.html">Course</a>
-				<div class="dropdown-content">
-
-				</div>
-			</li>
-  		<li class="dropdown">
-				<a href="search.html">Search</a>
-				<div class="dropdown-content">
-
-				</div>
-			</li>  
-			<li class="dropdown">
-				<a href="browser.html">Browser</a>
-				<div class="dropdown-content">
-
-				</div>
-			</li>
-			<li class="dropdown">
-				<a class="dropbtn" href="about.html">About</a>
-				<div class="dropdown-content">
-					<a href="">Isaac Gordon</a>
-					<a href="">Ron Refael</a> 
-				</div>
-			</li>
-		</ul>
-	</nav>
+	
+	
+	<!--Main Content-->
+	<main>
+			<section class="normal-section">
+					<div class="section-piece">
+							<h1>Welcome!</h1>
+							<p> This site hold the contents of a project made by <a href="about-resources/isaac-gordon.html">Isaac Gordon</a>
+								and <a href="about-resources/ron-refael.html">Ron Refael</a>, which was built for Professor <a target="_blank" href="https://venus.cs.qc.cuny.edu/~lteitelman/">Lawrence Teitleman</a>'s
+								course in Web and Internet Technologies.
+							</p>
+					</div>
+					<div class="section-piece">
+							<h1>What is SARA 355?</h1>
+							<p> SARA stands for "Search and Reoprt Application", and within this site are several
+								pages demonstrating different kinds of SARAs. 
+							</p>
+					</div>
+					<div class="section-piece">
+							<h1>What Technologies Do We Use?</h1>
+							<p> There are many different technologies used in the evelopment of websites and web applications.
+								The following are the technologies utilized in this site thus far in the development of this site:
+								<ul>
+									<li>HTML5</li>
+									<li>CSS3</li>
+									<li>Javascript</li>
+								</ul>
+								<!-- Want to see the construction? Check out the site's source code <a href="https://github.com/isaacngordon/SARA-CS355">here</a>. -->
+							</p>
+					</div>
+				</section>
+				
+				<!--
+				<section class="normal-section">
+					<div class="section-piece">
+						<h1>Explore</h1>
+						<p></p>
+					</div>
+				</section>
+				-->
+			
+				<section class="normal-section">
+						<div class="section-piece">
+							<h1>Availible Searchs</h1>
+							<h2>Dummy Search</h2>
+							<p>Check out a static search page, which demostrates the layout of a search results page
+								styled in this website's CSS stylesheet.
+							</p>
+							<h2>File Search</h2>
+							<p>
+								As the internet is a colleciton of hyperlinked files across amny machines, 
+								it is important for use to learn how to search through the content of files and
+								documents if we are going to build a search engine. On this portion of SARA 355, 
+								we will setup a search function that will return results from CSV, JSON, and XML 
+								files.
+							</p>
+							<h2>Google API Search</h2>
+							<p>
+								Search the internet utilizing the Google Search API. Google offers a huge suite of application 
+								programming interfaces that can be used to accomplish many, many, webtasks without having to
+								write your own functionality.<br>
+								As we learn how search engines function, we will use the <a target="_blank" href="https://developers.google.com/custom-search/v1/overview">Google Search API</a> to offload
+								some of the hard work. 
+							</p>
+							<h2>The Real Deal Search</h2>
+							<p>
+								This is the real deal SARA; the one we've been building up to. This search page
+								was built to comb websites for certain identifying information. It was built
+								from scratch, using principles learned through the above iterations.
+							</p>
+						</div>
+				</section>
+	</main>
+	
 </body>
+
+<footer>
+	<div id="site-map">
+	
+	</div>
+</footer>
 
 </html>

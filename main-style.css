@@ -1,0 +1,157 @@
+
+/*Standard Styling Rules*/
+:root{
+  --main-grey: #333;
+  --background-color: #111;
+  --highlight-color: rgb(0,190,0);
+  --main-white: white;
+}
+
+html{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--background-color);
+    color: var(--main-white);
+}
+
+a{
+  color: var(--highlight-color);
+}
+
+h1{
+  width: fit-content;
+  border-bottom: 2pt solid var(--main-white);
+  font-size: 20pt;
+}
+
+h2{
+  width: fit-content;
+  font-size: 18pt;
+  margin-top: 30px;
+}
+
+p{
+  width: fit-content;
+  font-size: 14pt;
+}
+
+/* Styling for NAV elements */
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--main-grey);
+  border-radius: 13px;
+}
+  
+nav li {
+  float: left;
+}
+  
+nav li a, .dropbtn {
+  display: inline-block;
+  color: var(--main-white);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*Drop down menus */
+/* Change the link color to --highlight-color on hover */
+nav li a:hover, .dropdown:hover .dropbtn{
+  background-color:var(--highlight-color);
+}
+
+/*Dropdown top-level items should be inline-block*/
+li.dropdown{
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--highlight-color);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: var(--main-white);
+  padding: 12px 16px;
+  text-decoration: none;
+  border: 1pt solid var(--main-grey);
+  display: block;
+  text-align: left;
+  }
+
+.dropdown-content a:hover {
+  background-color: var(--main-grey)
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+/* Styling rules for sectional body of the page */
+section {
+  background-color: var(--main-grey);
+  border-radius: 13px;
+  margin-top: 20px;
+  padding: 12px 0px
+}
+
+.design-section{
+  background-color: #111;
+  text-align: center;
+  margin: auto;
+} 
+
+.text-art{
+  white-space: pre; 
+  width: inherit;
+}
+
+.section-piece {
+  margin-bottom: 50px;
+}
+
+section .section-piece:last-of-type{
+  margin-bottom: 0px
+}
+
+section > * {
+  color: var(--main-white);
+  margin: 12px 16px; 
+}
+
+
+/* Animation */
+.console-dash{
+  animation: blinking 1s infinite;
+}
+
+@keyframes blinking{
+  0%{     color: var(--main-white); }
+  50%{    color: transparent; }
+  100%{   color: var(--main-white);  }
+}
+
+
+/*Footer Styling*/
+footer{
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+footer p{
+  font-size: 10pt;
+}
+
+#site-map{
+
+}
+
