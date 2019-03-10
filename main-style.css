@@ -94,6 +94,35 @@ li.dropdown{
   display: block;
 }
 
+/* Hamburger Menu normal*/
+#hamburger{
+  display: none;
+  cursor: pointer;
+  padding: 14px 16px;
+}
+
+.burger-bar{
+  width: 25px;
+  height: 4px;
+  background-color: var(--main-white);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change #bar-1{
+  -webkit-transform: rotate(-45deg) translate( -6px, 6px);
+  transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+.change #bar-2{
+  opacity: 0;
+}
+
+.change #bar-3{
+  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+  transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
 
 /* Styling rules for sectional body of the page */
 section {
@@ -154,4 +183,90 @@ footer p{
 #site-map{
 
 }
+
+
+/* Media Queries */
+
+@media screen and (min-width: 1000px){
+  .design-section .text-art{
+    width: auto;
+    display: inline-block;
+    padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  :root{
+    /* background-color: yellow;  */
+  }
+
+  /* if not the burger be hidden */
+  .menu ul li:not(:first-child){
+    display: none;
+  }
+
+  /* make burger nice */
+  .menu ul{
+    width: 100%;
+  }
+
+  #burger-list-item{
+    width: 100%;
+  }
+
+  #hamburger{
+    display: block;
+    padding-left: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+
+  #hamburger:hover{
+    background-color: var(--highlight-color);
+  }
+  /* end make burger nice */
+
+  /* After clicked, keep burger top center */
+  #nav-ul.responsive #hamburger {
+    position: relative;
+    right: 0;
+    top: 0;
+  }
+
+  /* after click, full menu list style*/
+  #nav-ul.responsive {
+    position: relative;
+  }
+
+  /* After click, burger style */
+  #nav-ul.responsive li.burger-list-item {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  /* After click, top level menu items style */
+  #nav-ul.responsive li {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  /* After click, submenu items style */
+  #nav-ul.responsive li .dropdown-content {
+    position: relative;
+    background-color: var(--highlight-color);
+    width: fit-content;
+  }
+
+  .design-section{
+    height: 200px;
+  }
+
+  .design-section .text-art {
+    font-size: 10px;
+  }
+}
+
 
