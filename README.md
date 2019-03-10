@@ -34,9 +34,9 @@ As we learn how search engines function, we will use the Google Search API to of
 - [x] Home Page
 - [x] Main style sheet
 - [x] Menu
-- - [x] Top level items
-- - [x] Sub menu items 
-- - [x] Responsive Hamburger 
+    - [x] Top level items
+    - [x] Sub menu items 
+    - [x] Responsive Hamburger 
 - [x] Course 
 - [x] File Structure
 - [ ] Fix above issues
