@@ -44,3 +44,7 @@ As we learn how search engines function, we will use the Google Search API to of
 - [ ] Bio, github, email, etc for Isaac and Ron
 - [ ] Get Browser Info for its page
 - - [ ] link by id to all the info on singular html page (browswer.html)
+- [ ] Footer
+    - [ ] Site Map
+    - [ ] Addtional info?
+    - [ ] Style 
