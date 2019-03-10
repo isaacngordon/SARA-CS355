@@ -2,8 +2,10 @@
 
 This project is a multi-phase search engine project for CS355 Internet and Web Technologies, taught by Professor Lawrence Tietleman at Queens College.
 
+The project can be viewed <a href="https://venus.cs.qc.cuny.edu/~gois8338/cs355/">here.</a>
+
 ##Search Functionalities 
-   
+
 ###Dummy Search
 As we learn to build a search engine, you can check out a static search page, which demostrates the layout of a search results page styled in this website's CSS stylesheet.
 
@@ -15,6 +17,7 @@ Google offers a huge suite of application programming interfaces that can be use
 As we learn how search engines function, we will use the Google Search API to offload some of the hard work.
 
 ---
+
 ##Technologies Used
 - HTML5
 - CSS3
