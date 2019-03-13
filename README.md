@@ -26,11 +26,11 @@ As we learn how search engines function, we will use the Google Search API to of
 ---
 
 ## Current Issues
-- Submenu items not properly responsive
+- When in hamburger mode, Submenu items need to show only when clicking text
 - Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
-- Media query changes not working in Safari but okay in Chrome.
+- Media query changes work for desktop browser not mobile
 
-## TODO://By Wednesday, March 13
+## TODO://By Thursday, March 14
 - [x] Home Page
 - [x] Main style sheet
 - [x] Menu
@@ -39,15 +39,16 @@ As we learn how search engines function, we will use the Google Search API to of
     - [x] Responsive Hamburger 
 - [x] Course 
 - [x] File Structure
-- [ ] Fix above issues
 - [ ] Hard Code Dummy Results
 - [ ] Bio, github, email, etc for Isaac and Ron
 - [ ] Get Browser Info for its page
-    - [ ] link by id to all the info on singular html page (browswer.html)
+    - [ ] link by id to all the info on singular html page (browser.html)
 - [ ] Footer
     - [ ] Site Map
     - [ ] Addtional info?
     - [ ] Style 
+- [ ] Contact Us: remove table and change it to h2 > label > p/a
+
     
     
     

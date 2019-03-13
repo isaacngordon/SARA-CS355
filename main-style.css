@@ -147,6 +147,10 @@ section {
   margin-bottom: 50px;
 }
 
+.section-piece p {
+  text-align: justify;
+}
+
 section .section-piece:last-of-type{
   margin-bottom: 0px
 }
