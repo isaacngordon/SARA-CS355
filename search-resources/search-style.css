@@ -1,0 +1,7 @@
+:root {
+    --highlight-color: rgb(0,190,0)
+}
+
+.search-url{
+    color: var(--highlight-color);
+}

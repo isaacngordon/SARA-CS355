@@ -30,24 +30,41 @@ As we learn how search engines function, we will use the Google Search API to of
 - Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
 - Media query changes work for desktop browser not mobile
 
-## TODO://By Thursday, March 14
+## //TODO: By Thursday, March 14
 - [x] Home Page
+    - [x] design overall
+    - [x] SARA 355 design
+    - [x] organize information
+    - [x] links and data
 - [x] Main style sheet
+    - [x] base stayle
+    - [x] make page responsive
 - [x] Menu
     - [x] Top level items
     - [x] Sub menu items 
     - [x] Responsive Hamburger 
 - [x] Course 
 - [x] File Structure
-- [ ] Hard Code Dummy Results
-- [ ] Bio, github, email, etc for Isaac and Ron
+- [x] About
+    - [x] Get Headshots
+    - [x] Get Ron Links
+    - [x] write bios
+    - [x] Hard Code Dummy Results
 - [ ] Get Browser Info for its page
     - [ ] link by id to all the info on singular html page (browser.html)
+- [x] !! Attach all html menus to dummy-search.html
+
+## //TODO: By Sunday, March 17
+- [ ] Contact Us: remove table and change it to h2 > label > p/a
 - [ ] Footer
     - [ ] Site Map
     - [ ] Addtional info?
     - [ ] Style 
-- [ ] Contact Us: remove table and change it to h2 > label > p/a
+- [ ] About
+    - [ ] Move p to right of image
+    - [ ] make responsive
+- [ ] add search bar to dummy-search.html
+- [ ] Improve search-style.css
 
     
     
