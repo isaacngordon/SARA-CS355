@@ -52,6 +52,7 @@ As we learn how search engines function, we will use the Google Search API to of
     - [x] Hard Code Dummy Results
 - [ ] Get Browser Info for its page
     - [ ] link by id to all the info on singular html page (browser.html)
+    - [ ] add submenu GeoLocation
 - [x] !! Attach all html menus to dummy-search.html
 
 ## //TODO: By Sunday, March 17
@@ -67,6 +68,8 @@ As we learn how search engines function, we will use the Google Search API to of
 - [ ] Improve search-style.css
 - [ ] Add more info to the Search Page
 - [ ] Add course info to COURSE page (find via QC resources)
+- [ ] Search term in the search box
+    - [ ] Real results from google hardcoded
 
     
     
