@@ -66,6 +66,7 @@ As we learn how search engines function, we will use the Google Search API to of
 - [ ] add search bar to dummy-search.html
 - [ ] Improve search-style.css
 - [ ] Add more info to the Search Page
+- [ ] Add course info to COURSE page (find via QC resources)
 
     
     

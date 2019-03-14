@@ -5,3 +5,7 @@
 .search-url{
     color: var(--highlight-color);
 }
+
+.search-result{
+    text-align: justify;
+}
