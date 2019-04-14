@@ -4,7 +4,9 @@
 <title>Home | SARA CS 355</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="main-style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="menu-script.js"></script>
+<script src="getBrowserInfo.js"></script>
 </head>
 
 <body>
@@ -75,42 +77,64 @@ SSSSSSS   A     A   R     R   A     A
 	</section>
 
 	<section class="normal-section" id="browser-info">
-		<div class="section-piece">
-
-		</div>
+			<h1>Browser Info</h1>
+			<div class="section-piece">
+				<h2>Browser</h2>
+				<p id="browser-name"></p>
+			</div>
+			<div class="section-piece">
+					<h2>Browser Version</h2>
+					<p id="browser-version"></p>
+			</div>
+			<div class="section-piece">
+				<h2>User Agent</h2>
+				<p id="browser-user-agent"></p>
+			</div>
+			<div class="section-piece">
+					<h2>User's Platform</h2>
+					<p id="browser-platform"></p>
+				</div>
 
 	</section>
 
 	<section class="normal-section" id="window-info">
 		<h1>Window Info</h1>
 		<div class="section-piece">
-			<h2>Componenet 1</h2>
-
+			<h2>Window Height</h2>
+			<p id="window-height"></p>
 		</div>
 		<div class="section-piece">
-				<h2>Componenet 2</h2>
-	
+				<h2>Window Width</h2>
+				<p id="window-width"></p>
 		</div>
-		<div class="section-piece">
-			<h2>Componenet 3</h2>
-		
-		</div>
-
 	</section>
+
 
 	<section class="normal-section" id="screen-info">
 			<h1>Screen Info</h1>
 			<div class="section-piece">
-				<h2>Componenet 1</h2>
-	
+				<h2>Height</h2>
+				<p id="screen-height"></p>
 			</div>
 			<div class="section-piece">
-					<h2>Componenet 2</h2>
-		
+				<h2>Width</h2>
+				<p id="screen-width"></p>
 			</div>
 			<div class="section-piece">
-				<h2>Componenet 3</h2>
-			
+				<h2>Availible Height</h2>
+				<p id="screen-avail-height"></p>
+			</div>
+			<div class="section-piece">
+					<h2>Availible Width</h2>
+					<p id="screen-avail-width"></p>
+			</div>
+			<div class="section-piece">
+					<h2>Color Depth</h2>
+					<p id="screen-color-depth"></p>
+			</div>
+			<div class="section-piece">
+					<h2>Pixel Depth</h2>
+					<p id="screen-pixel-depth"></p>
 			</div>
 
 	</section>
@@ -118,33 +142,35 @@ SSSSSSS   A     A   R     R   A     A
 	<section class="normal-section" id="location-info">
 			<h1>Location Info</h1>
 			<div class="section-piece">
-				<h2>Componenet 1</h2>
-	
+				<h2>Current Href</h2>
+				<p id="location-href"></p>
 			</div>
-			<div class="section-piece">
-					<h2>Componenet 2</h2>
-		
+			<div class="section-piece" >
+					<h2>Hostname</h2>
+					<p id="location-hostname"></p>
 			</div>
-			<div class="section-piece">
-				<h2>Componenet 3</h2>
-			
+			<div class="section-piece" >
+				<h2>Pathname</h2>
+				<p id="location-pathname"></p>
 			</div>
+			<div class="section-piece" >
+					<h2>Protocol</h2>
+					<p id="location-protocol"></p>
+				</div>
 
 	</section>
 
 	<section class="normal-section" id="geolocation-info">
 			<h1>Geo-Location Info</h1>
 		<div class="section-piece">
-			<h2>Componenet 1</h2>
-
+			<h2>Longitude</h2>
+			<p id="geo-longitude"></p>
 		</div>
 		<div class="section-piece">
-				<h2>Componenet 2</h2>
-	
+				<h2>Latitude</h2>
+				<p id="geo-latitude"></p>
 		</div>
-		<div class="section-piece">
-			<h2>Componenet 3</h2>
-		
-		</div>
-
 	</section>
+	</body>
+	
+	</html>
