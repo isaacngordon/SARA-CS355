@@ -2,10 +2,23 @@
     --highlight-color: rgb(0,190,0)
 }
 
-.search-url{
+.search-url {
     color: var(--highlight-color);
 }
 
-.search-result{
+.search-result {
     text-align: justify;
+}
+
+button {
+    color: black;
+}
+
+#selectionBtns{
+    margin-top:14px;
+}
+
+input {
+    color: black;
+    width: inherit;
 }

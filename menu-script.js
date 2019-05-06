@@ -1,11 +1,13 @@
 
+$(document).ready(function(err){
+    try{
+        document.getElementById("hamburger").addEventListener("click", burgerFunction);
+        document.getElementById("hamburger").addEventListener("click", responsiveMenu);
+    } catch(err){
+        console.log(err);
+    }
+})
 
-try{
-    document.getElementById("hamburger").addEventListener("click", burgerFunction);
-    document.getElementById("hamburger").addEventListener("click", responsiveMenu);
-} catch(err){
-    console.log(err)
-}
 
 function burgerFunction(){
     let hamburger = document.getElementById("hamburger");

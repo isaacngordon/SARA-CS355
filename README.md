@@ -50,9 +50,9 @@ As we learn how search engines function, we will use the Google Search API to of
     - [x] Get Ron Links
     - [x] write bios
     - [x] Hard Code Dummy Results
-- [ ] Get Browser Info for its page
-    - [ ] link by id to all the info on singular html page (browser.html)
-    - [ ] add submenu GeoLocation
+- [x] Get Browser Info for its page
+    - [x] link by id to all the info on singular html page (browser.html)
+    - [x] add submenu GeoLocation
 - [x] !! Attach all html menus to dummy-search.html
 
 ## //TODO: By Sunday, March 17

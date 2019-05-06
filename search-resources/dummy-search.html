@@ -5,57 +5,15 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../main-style.css">
 <link rel="stylesheet" href="search-style.css">
-<script src="../menu-script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+<script src="../insert-menu.js"></script>
+<script src="dummySearch.js"></script>
 </head>
 
 <body>
-		<div class="navbar">
-				<nav class="menu">
-					<ul id="nav-ul">
-						</li>
-						<li id="burger-list-item">
-							<div id="hamburger" onclick="burgerFunction();responsiveMenu()">
-								<div class="burger-bar" id="bar-1"></div>
-								<div class="burger-bar" id="bar-2"></div>
-								<div class="burger-bar" id="bar-3"></div>
-							</div>
-						</li>
-						<li>
-						<a href="../index.html">Home</a>
-						</li>
-						<li class="dropdown">
-							<a class="dropbtn" href="course.html">Course</a>
-							<div class="dropdown-content">
-								<a target="_blank" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019">Zybook</a>
-							</div>
-						</li>
-						<li class="dropdown">
-							<a class="dropbtn"  href="search.html">Search</a>
-							<div class="dropdown-content">
-								<a href="#">Dummy Search</a>
-								<a href="#">File Search</a>
-								<a href="#">Google API Search</a>
-								<a href="#">The Real Deal Search</a>
-							</div>
-						</li>  
-						<li class="dropdown">
-							<a class="dropbtn" href="browser.html">Browser</a>
-							<div class="dropdown-content">
-								<a href="browser.html/#browser-info">Browser Info</a>
-								<a href="browser.html/#window-info">Window Info</a>
-								<a href="browser.html/#screen-info">Screen Info</a>
-								<a href="browser.html/#location-info">Location Info</a> 
-							</div>
-						</li>
-						<li class="dropdown">
-							<a class="dropbtn" href="about.html">About</a>
-							<div class="dropdown-content">
-								<a href="about-resources/isaac-gordon.html">Isaac Gordon</a>
-								<a href="about-resources/ron-refael.html">Ron Refael</a> 
-								<a href="about-resources/contact-us.html">Contact Us</a>
-							</div>
-					</ul>
-				</nav>
+		<div class="navbar" id="menuHere">
+				
 			</div>
 
 	<section class="design-section" id="sara-design">
@@ -75,108 +33,35 @@ SSSSSSS   A     A   R     R   A     A
 		</p>
 	</section>
 
-	<section class="normal-section search-bar" id="dummy-search-bar">
-		<p>
-			insert centered here:<br> label->white <br>text-input->color=black;length=300px;disabled <br> search button->bk-ground=green;color=white.
-		</p>
-	</section>
-
-	<section class="normal-section search-result">
-		<h2>Search Result 1</h2>
-		<a class="search-url" href="#">wwww.example.com/search-result-1</a>
-		<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-				dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-				sem nulla, elementum et lobortis ac.
-		</p>
-	</section>
-
-	<section class="normal-section search-result">
-			<h2>Search Result 2</h2>
-			<a class="search-url" href="#">wwww.example.com/search-result-2</a>
-			<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-					dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-					sem nulla, elementum et lobortis ac.
-			</p>
+	<form id=search-form action="fileSearchRunner.js" class="search-form">
+		
+		<section class="normal-section search-bar" id="user-panel">
+			<label>Search:</label> <input style="color: black;" type="text" id="search-terms" name="search-terms" value="new yorks best pizza" readonly>
+			<input type="button" id="btnSearch" value="Search" >
+			<br>
+			<br>
+			<div id="upload-download" class="fileupload" >
+					<fieldset>
+							<legend>Upload or Download</legend>
+							<label id="labelUpload">Upload File:</label>
+							<input type="file" name="file-upload" id="txtFileUpload" accept=".csv, .xml, .json"/>
+							
+							<div id="selectionBtns">
+									<label id="labelDownload">Download Results:</label>
+								<button type="button" id="btnSelectAll">
+									Select All
+								</button> 
+								<button type="button" id="btnDownload">
+									Download Selected
+								</button> 
+							</div>
+						</fieldset>
+					</div>
 		</section>
 
-		<section class="normal-section search-result">
-				<h2>Search Result 3</h2>
-				<a class="search-url" href="#">wwww.example.com/search-result-3</a>
-				<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-						dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-						sem nulla, elementum et lobortis ac.
-				</p>
-			</section>
+		<div id="resultsDiv"></div>
+	</form>
 
-			<section class="normal-section search-result">
-					<h2>Search Result 4</h2>
-					<a class="search-url" href="#">wwww.example.com/search-result-4</a>
-					<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-							dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-							sem nulla, elementum et lobortis ac.
-					</p>
-				</section>
-
-				<section class="normal-section search-result">
-						<h2>Search Result 5</h2>
-						<a class="search-url" href="#">wwww.example.com/search-result-5</a>
-						<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-								dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-								sem nulla, elementum et lobortis ac.
-						</p>
-					</section>
-
-					<section class="normal-section search-result">
-							<h2>Search Result 6</h2>
-							<a class="search-url" href="#">wwww.example.com/search-result-6</a>
-							<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-									dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-									sem nulla, elementum et lobortis ac.
-							</p>
-						</section>
-
-						<section class="normal-section search-result">
-								<h2>Search Result 7</h2>
-								<a class="search-url" href="#">wwww.example.com/search-result-7</a>
-								<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-										dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-										sem nulla, elementum et lobortis ac.
-								</p>
-							</section>
-
-							<section class="normal-section search-result">
-									<h2>Search Result 8</h2>
-									<a class="search-url" href="#">wwww.example.com/search-result-8</a>
-									<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-											dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-											sem nulla, elementum et lobortis ac.
-									</p>
-								</section>
-
-								<section class="normal-section search-result">
-										<h2>Search Result 9</h2>
-										<a class="search-url" href="#">wwww.example.com/search-result-9</a>
-										<p>
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-												dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-												sem nulla, elementum et lobortis ac.
-										</p>
-									</section>
-
-									<section class="normal-section search-result">
-											<h2>Search Result 10</h2>
-											<a class="search-url" href="#">wwww.example.com/search-result-10</a>
-											<p>
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis magna lobortis, 
-													dignissim sapien nec, dapibus nunc. In fringilla eget mauris eget lobortis. Maecenas 
-													sem nulla, elementum et lobortis ac.
-											</p>
-										</section>
+</body>
+<script src="../menu-script.js"></script>
+</html>
