@@ -2,8 +2,8 @@ $(document).ready(function(err){
 
     var x = document.getElementById("menuHere");
     var menu = generateMenu();
-    console.warn("Menu loaded: \n");
-    console.log(menu);
+    console.log("Menu loaded: \n");
+    //console.log(menu);
     x.innerHTML = menu;
 });
 

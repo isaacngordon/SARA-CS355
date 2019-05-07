@@ -41,14 +41,16 @@ function injectResults(){
 
         //set h2
         h.innerHTML = obj.title;
+        h.setAttribute("class", "result-title")
 
         //set a
-        a.setAttribute("class", "search-url");
+        a.setAttribute("class", "result-url");
         a.setAttribute("href", obj.url);
         a.innerHTML = obj.url;
 
         //set p
         p.innerHTML = obj.description
+        p.setAttribute("class", "result-description");
 
         //set checkbox
         var check = document.createElement("input");
@@ -57,6 +59,7 @@ function injectResults(){
         let val = `result${i}`;
         check.setAttribute("value", val);
         check.setAttribute("name", val);
+        check.setAttribute("class","result-checkbox")
 
         //append to document
         s.append(h);

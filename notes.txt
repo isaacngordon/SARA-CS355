@@ -1,0 +1,65 @@
+Posted on: Friday, March 15, 2019 10:47:46 AM EDT
+For phases 2-5, each search result should include the following:
+
+title (taken from HTML title element)
+URL (use href to create hyperlink)
+description (taken from the HTML meta/description element).
+The CSV, JSON, and XML file formats used for uploading results in Phase 3, and for downloading results in Phases 3-5, should also include these three attributes (title, URL, and description).
+----
+
+File formats for Phase 3 Upload (and Phase 2-5 Download)
+Posted on: Friday, March 22, 2019 2:09:01 PM EDT
+For Phase 3, you should be able to upload "search results" stored as CSV, JSON, and XML formats. See attached FileFormats.txt. You should then render these results using the same HTML/CSS styling used in Phase 2.
+
+You should also implement functionality to be able to download (save) a subset of a result set displayed on the screen (i.e. all those selected using checkboxes) to a file whose format CSV, JSON, or XML is chosen by the user. (You can use a dropdown to choose the filetype, or have it implied by the extension of the filename selected. Separate buttons for each filetype is not recommended as this could easily get out of hand were one to expand the list of supported filetypes.) This download functionality should be available going forward for Phases 3-5, as well as retrofitted to Phase 2,.
+----
+
+Phase 3 - File Fix and Clarification
+Posted on: Tuesday, April 2, 2019 11:06:28 PM EDT
+1. The "FileFormat" file (under Blackboard > Content) has been updated to fix the missing root element in the XML section.
+
+2. For Phase 3, by "Upload" of results, we mean from a file to the browser, and (for Phases 2-5), by "Download"of results,  we mean from the browser to the file system (or creating a download link). You don't necessarily have to upload to the server, unless that is helpful to you in supporting the functionality.  
+----
+
+// CSV
+JSON,json.org,the home page for JavaScript Object Notation
+XML,xml.org,the home page for Extensible Markup Language
+
+// JSON
+{
+  "Result" : [
+    {"title":"JSON", "url":"json.org", "description":"the home page for JavaScript Object Notation"},
+    {"title":"XML", "url":"xml.org", "description":"the home page for Extensible Markup Language"}
+  ]
+}
+ 
+//XML
+<?xml version="1.0" encoding="UTF-8"?>
+<results>
+  <result>
+    <title>JSON</title>
+    <url>json.org</url>
+    <description>the home page for JavaScript Object Notation</description>
+  </result>       
+  <result>
+    <title>XML</title>
+    <url>xml.org</url>
+    <description>the home page for Extensible Markup Language</description>
+  </result>
+</results> 
+
+
+TODO PHASE 3
+- all parsers type --> json
+- all parsers json --> type 
+- downloadFile -> get string from JSONto{ext}
+               -> write string to file
+               -> name output file "Sara350_file-search-results.{ext}"
+
+- test orderByCount
+    - check array[] and results[] references, NEED A COPY not the references 
+- test that results change on screen
+    - new query changes count value
+    - new query reorders array[] but not results[]
+- test input file parsing to results
+- test file download for all formats

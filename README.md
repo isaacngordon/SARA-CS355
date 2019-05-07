@@ -26,36 +26,29 @@ As we learn how search engines function, we will use the Google Search API to of
 ---
 
 ## Current Issues
-- When in hamburger mode, Submenu items need to show only when clicking text
-- Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
-- Media query changes work for desktop browser not mobile
 
-## //TODO: By Thursday, March 14
-- [x] Home Page
-    - [x] design overall
-    - [x] SARA 355 design
-    - [x] organize information
-    - [x] links and data
-- [x] Main style sheet
-    - [x] base stayle
-    - [x] make page responsive
-- [x] Menu
-    - [x] Top level items
-    - [x] Sub menu items 
-    - [x] Responsive Hamburger 
-- [x] Course 
-- [x] File Structure
-- [x] About
-    - [x] Get Headshots
-    - [x] Get Ron Links
-    - [x] write bios
-    - [x] Hard Code Dummy Results
-- [x] Get Browser Info for its page
-    - [x] link by id to all the info on singular html page (browser.html)
-    - [x] add submenu GeoLocation
-- [x] !! Attach all html menus to dummy-search.html
 
-## //TODO: By Sunday, March 17
+## //TODO Phase 3
+- [ ] all parsers type --> json
+- [ ] all parsers json --> type 
+- [ ] downloadFile
+    - [ ]get string from JSONto{ext}
+    - [ ] write string to file
+    - [ ] name output file "Sara350_file-search-results.{ext}"
+
+- [ ] test orderByCount
+    - check array[] and results[] references, NEED A COPY not the references 
+- [ ] test that results change on screen
+    - [ ] new query changes count value
+    - [ ] new query reorders array[] but not results[]
+- [ ] test input file parsing to results
+- [ ] test file download for all formats
+
+## //TODO Phase 4
+
+## //TODO Phase 5
+
+## //TODO: House Keeping
 - [ ] Contact Us: remove table and change it to h2 > label > p/a
 - [ ] Footer
     - [ ] Site Map
@@ -68,8 +61,9 @@ As we learn how search engines function, we will use the Google Search API to of
 - [ ] Improve search-style.css
 - [ ] Add more info to the Search Page
 - [ ] Add course info to COURSE page (find via QC resources)
-- [ ] Search term in the search box
-    - [ ] Real results from google hardcoded
+- [ ] When in hamburger mode, Submenu items need to show only when clicking text
+- [ ] Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
+- [ ] Media query changes work for desktop browser not mobile
 
     
     
