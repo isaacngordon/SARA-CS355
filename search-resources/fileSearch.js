@@ -130,36 +130,18 @@ function downloadResults(evt){
 }
 
 function queryResults(queryString){
-     /*
-  if(queryString == ""){
- 			injectResults(results);
-      return;
- 	}
-  
-  q[] = {word1, word2,... wordN} where word is a word in the query
-  for each element in  results[]
-  	 count = 0;
-     r = results[i]
-     for each word w in q[]
-     		//use regex?
-     	  if(r.contains(word)) count += numTimesAppearence;
-     r[i].count = count;
-  
-  ary = orderByCount(results);
-  filterAryByCount(ary);
-  injectResults(ary);
-     
-      
-  */
-     if(queryString == ""){
-         injectResults(results);
-         return;
-     }
+    //see if qwurystring is blank and show all results
+    if(queryString == ""){
+        injectResults(results);
+        return;
+    }
 
-     var q = queryString.split(" ");
-     for(var i = 0; i < results.length; i++){
+    //count references to query
+    var q = queryString.split(" ");
+    var array = results;
+    for(var i = 0; i < array.length; i++){
         var count = 0;
-        var r = results[i];
+        var r = array[i];
         for(var j = 0; j < q.length; j++){
             var t = r.title;
             var u = r.url;
@@ -169,8 +151,21 @@ function queryResults(queryString){
             let tMatches = t.match(regex);
             let uMatches = u.match(regex);
             let dMatches = d.match(regex);
+            let k;
+            while (k = regex.exec(t)) {
+                count += 2;
+            }
+            while (k = regex.exec(u)) {
+                count += 3;
+            }
+            while (k = regex.exec(d)) {
+                count += 1;
+            }
         }
-     }
+        array[i].count = count;
+    }
+    orderByCount(array);
+    injectResults(array);
 }
 
 function orderByCount(jsonAry){
@@ -179,7 +174,6 @@ function orderByCount(jsonAry){
       return x.count - y.count;
     }
     jsonAry.sort(byCount);
-    
 }
       
 function parseJSONtoJSON(dataString){
