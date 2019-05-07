@@ -36,15 +36,8 @@ function generateMenu(){
                 <a href="#">The Real Deal Search</a>
             </div>
         </li>  
-        <li class="dropdown">
-            <a class="dropbtn" href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html">Browser</a>
-            <div class="dropdown-content">
-                <a href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html/#browser-info">Browser Info</a>
-                <a href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html/#window-info">Window Info</a>
-                <a href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html/#screen-info">Screen Info</a>
-                <a href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html/#location-info">Location Info</a> 
-                <a href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html/#geolocation-info">GeoLocation Info</a> 
-            </div>
+        <li>
+            <a href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/browser.html">Browser</a>
         </li>
         <li class="dropdown">
             <a class="dropbtn" href="/Users/isaacgordon/Documents/Academics/CSCI/CSCI_355_Teitelman/project-files/SARA-CS355/about.html">About</a>
