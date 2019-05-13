@@ -65,18 +65,21 @@ $(document).ready(function(err){
             const reader = new FileReader();
             reader.onload = function(){
                 fileData = reader.result;
-                console.log("FileData:\n","==========\n", fileData);
+                console.log("FileData:\n", fileData);
                 window.alert(fileData);
+
+                //process data
+                var t = upupup.files[0].type;
+                uploadFileData(fileData, t, results);
+                injectResults(results);
+                console.log("File upload success.");
             }
             reader.readAsText(upupup.files[0]);
             
             fileUploaded = true;
         }//if
         //process file
-        var t = upupup.files[0].type;
-        uploadFileData(fileData, t, results);
-        injectResults(results);
-        console.log("File upload success.");
+        
     }, false); // 38
 
     //add event listener for Select All button
@@ -91,8 +94,11 @@ $(document).ready(function(err){
 });
 
 function removeChildrenOf(elem){
-    for(var i = 0; i < elem.childNodes.length; i++){
+    /*for(var i = 0; i < elem.childNodes.length; i++){
         elem.removeChild(elem.childNodes[i]);
+    }*/
+    while (elem.firstChild) {
+        elem.removeChild(elem.firstChild);
     }
 }
 
@@ -101,6 +107,16 @@ function injectResults(ary){
     
     //remove old results from page
     removeChildrenOf(resultsDiv);
+    if(ary.length == 0){
+        let mssg = "No results have been found...";
+        var womp = document.createElement("section")
+        womp.setAttribute("class", "normal-section search-result");
+        var h = document.createElement("h2");
+        h.innerHTML = mssg;
+        womp.append(h);
+        resultsDiv.appendChild(womp);
+        return;
+    }
 
     for(var i = 0; i < ary.length; i++){
         var obj = ary[i];
@@ -213,35 +229,50 @@ function queryResults(queryString){
     //count references to query
     var q = queryString.split(" ");
     var array = [];
-    console.warn(array, results);
-     array = results.slice();
-    console.warn(array, results);
     //var array = results;
     //console.warn(array, results);
-    for(var i = 0; i < array.length; i++){
+    for(var i = 0; i < results.length; i++){
+
+        //counts number of occrances of re in str
+        function countOccurances(str, re){
+            try{
+                console.warn("Working with string " +str + " using expr " + re);
+                return str.match(re).length;
+            } catch (err){
+                console.error("Cannot count occurances of " + re +" in "+ str +"\n", err);
+                return 0;
+            }
+        }
+
         var count = 0;
-        var r = array[i];
+        var r = results[i];
         for(var j = 0; j < q.length; j++){
             var t = r.title;
             var u = r.url;
             var d = r.description;
             var regex = new RegExp(q[j],"gi");
+
+            count += countOccurances(t, regex);
+            count += countOccurances(u, regex);
+            count += countOccurances(d, regex);
+
             
-            let tMatches = t.match(regex);
-            let uMatches = u.match(regex);
-            let dMatches = d.match(regex);
+            /*let tMatches = regex.exec(t);
+            let uMatches = regex.exec(u);
+            let dMatches = regex.exec(d);
             let k;
-            while (k = regex.exec(t)) {
+            for( let j = 0; j < tMatches.length; j++){
                 count += 2;
             }
-            while (k = regex.exec(u)) {
+            for( let j = 0; j < uMatches.length; j++) {
                 count += 3;
             }
-            while (k = regex.exec(d)) {
+            for( let j = 0; j < dMatches.length; j++) {
                 count += 1;
-            }
+            }*/
         }
-        array[i].count = count;
+        results[i].count = count;
+        if(results[i].count > 0) array.push(results[i]);
     }
     orderByCount(array);
     injectResults(array);
@@ -250,70 +281,106 @@ function queryResults(queryString){
 
 function orderByCount(jsonAry){
     //use a simple sorting algorithm to reorder the jsonAry by the value of the field "count"
-    function byCount(x,y){
-      return parseInt(x.count) - parseInt(y.count);
+    function byReverseCount(x,y){
+      return -(parseInt(x.count) - parseInt(y.count));
     }
-    jsonAry.sort(byCount);
+    jsonAry.sort(byReverseCount);
 }
       
 function parseJSONtoJSON(dataString){
-    //TODO:
-  //parse the dataString into an array of json objects
-  //input each object into objectsAry[]
-    //return objectsAry
-     var objectsAry = [
-        {"title":"Best Pizza Restaurants in New York City : Food Network ... - NYC", 
-        "url":"https://www.foodnetwork.com > Restaurants", 
-        "description":"The Best Pizza in New York City. Keste. Paulie Gee's. Totonno's Pizzeria Napolitano. Ops. Joe's Pizza. Houdini Kitchen Lab. John's of Bleecker Street. Prince Street Pizza."
-    },
-    {"title":"New York pizza - NYC - Time Out", 
-        "url":"https://www.timeout.com/newyork/restaurants/best-new-york-pizza", 
-        "description":"Nov 7, 2018 - Craving a New York pizza slice? We ranked pies from all 5 boroughs to crown the best pizza in NYC, with family-owned joints and new-age ..."
-    },
-     ];
+    var objectsAry = [];
+    let a = JSON.parse(dataString);
+    let r = a.results;
     
+    for(var i = 0; i < r.length; i++) {
+        var jobject = r[i];
+        objectsAry.push(jobject);
+    }
+
+    console.log("JSON File: ", objectsAry);
     return objectsAry;
-    
 }
       
 function parseCSVtoJSON(dataString){
-    //TODO: 
-    //parse the dataString into an of json objects
-    //input each object into objectsAry[]
-    //return objectsAry
+    var objectArray = [];
     
-    var objectsAry = [
-        {"title":"Best Pizza Restaurants in New York City : Food Network ... - NYC", 
-        "url":"https://www.foodnetwork.com > Restaurants", 
-        "description":"The Best Pizza in New York City. Keste. Paulie Gee's. Totonno's Pizzeria Napolitano. Ops. Joe's Pizza. Houdini Kitchen Lab. John's of Bleecker Street. Prince Street Pizza."
-        },
-        {"title":"New York pizza - NYC - Time Out", 
-        "url":"https://www.timeout.com/newyork/restaurants/best-new-york-pizza", 
-        "description":"Nov 7, 2018 - Craving a New York pizza slice? We ranked pies from all 5 boroughs to crown the best pizza in NYC, with family-owned joints and new-age ..."
-        },
-    ];
+    //set delim to linebreaks
+    let rowDelim = /\n|\r|\f/gi;
+
+    //split on linebreak to get different rows
+    let rows = dataString.split(rowDelim);
+    console.log("Rows", rows);
+
+    //row by row create a new json obj and add it to the objectArray
+    for(let i = 0; i < rows.length; i++){
+        if(rows[i] == "") continue;
+
+        //for each row, set new delim ' ","
+        let pieceDelim = /\"[\s]*,[\s]*\"/gi;
+
+        //split on new delim to find individual values
+        let pcs = rows[i].split(pieceDelim);
+        console.log("Pieces at row " + i, pcs);
+
+        //create new JSON obj from theses pcs
+        let obj = {};
+        obj.title = pcs[0];
+        obj.url = pcs[1];
+        obj.description = pcs[2];
+        
+        //add obj to objectArray
+        console.log("Objct is ", obj);
+        objectArray.push(obj);
+    }
+    console.warn("CSV array:\n", objectArray);
+    //return object array
+    return objectArray;
     
-    return objectsAry;
 }
       
 function parseXMLtoJSON(dataString){
-    //TODO: 
-    //parse the dataString into an of json objects
-    //input each object into objectAry[]
-    //return objectsAry
-    var objectsAry = [
-        {"title":"Best Pizza Restaurants in New York City : Food Network ... - NYC", 
-        "url":"https://www.foodnetwork.com > Restaurants", 
-        "description":"The Best Pizza in New York City. Keste. Paulie Gee's. Totonno's Pizzeria Napolitano. Ops. Joe's Pizza. Houdini Kitchen Lab. John's of Bleecker Street. Prince Street Pizza."
-    },
-    {"title":"New York pizza - NYC - Time Out", 
-        "url":"https://www.timeout.com/newyork/restaurants/best-new-york-pizza", 
-        "description":"Nov 7, 2018 - Craving a New York pizza slice? We ranked pies from all 5 boroughs to crown the best pizza in NYC, with family-owned joints and new-age ..."
-    },
-     ];
+    var objAry = [];
     
-    return objectsAry;
-}
+    //build relevent regexps
+    let resultsTagExp = /<results>[\s\S]*?<\/results>/i;        //matches the <results> element
+    let singleResultExp = /<result>[\s\S]*?<\/result>/ig;       //matches the <result> element
+    let titleExp = /<title>[\s\S]*?<\/title>/i;                 //matches the <title> element
+    let urlExp = /<url>[\s\S]*?<\/url>/i;                       //matches the <url> element
+    let descripExp = /<description>[\s\S]*?<\/description>/i;   //matches the <description> element
+
+    try{
+        console.log("XML Parse on string:\n", dataString);
+        let rs = dataString.match(resultsTagExp);
+        console.log("Results Total String:\n", rs);
+        let allResults = rs[0].match(singleResultExp);
+        console.log('All Results:\n', allResults);
+        
+        //for each match of <result> tags, parse its contents and add it to the document
+        for(let kk = 0; kk < allResults.length; kk++){
+            let title, url, descrip;
+            let aResult = allResults[kk];
+            console.log('A result: ', aResult);
+            
+            //get properties
+            title = aResult.match(titleExp)[0];
+            url = aResult.match(urlExp)[0];
+            descrip = aResult.match(descripExp)[0];
+
+            //remove tags
+            title = title.replace(/(<([^>]+)>)/ig,"");
+            url = url.replace(/(<([^>]+)>)/ig,"");
+            descrip = descrip.replace(/(<([^>]+)>)/ig,"");
+
+
+            let o = {'title': title, 'url': url, 'description': descrip};
+            objAry.push(o);
+        }
+        
+        return objAry;
+    } catch(err){
+        console.error("Failed to Parse XML File", err, objAry);
+    }
+}//parseXMLtoJSON
 
 function writeJSONArrayToXMLFile(jsonAry){
 

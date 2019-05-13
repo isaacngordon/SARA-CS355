@@ -29,19 +29,19 @@ As we learn how search engines function, we will use the Google Search API to of
 
 
 ## //TODO Phase 3
-- [ ] all parsers type --> json
+- [x] all parsers type --> json
 - [ ] all parsers json --> type 
 - [ ] downloadFile
     - [ ]get string from JSONto{ext}
     - [ ] write string to file
     - [ ] name output file "Sara350_file-search-results.{ext}"
 
-- [ ] test orderByCount
+- [x] test orderByCount
     - check array[] and results[] references, NEED A COPY not the references 
-- [ ] test that results change on screen
-    - [ ] new query changes count value
-    - [ ] new query reorders array[] but not results[]
-- [ ] test input file parsing to results
+- [x] test that results change on screen
+    - [x] new query changes count value
+    - [x] new query reorders array[] but not results[]
+- [x] test input file parsing to results
 - [ ] test file download for all formats
 
 ## //TODO Phase 4
