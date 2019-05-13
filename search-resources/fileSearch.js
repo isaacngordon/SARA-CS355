@@ -255,21 +255,6 @@ function queryResults(queryString){
             count += countOccurances(t, regex);
             count += countOccurances(u, regex);
             count += countOccurances(d, regex);
-
-            
-            /*let tMatches = regex.exec(t);
-            let uMatches = regex.exec(u);
-            let dMatches = regex.exec(d);
-            let k;
-            for( let j = 0; j < tMatches.length; j++){
-                count += 2;
-            }
-            for( let j = 0; j < uMatches.length; j++) {
-                count += 3;
-            }
-            for( let j = 0; j < dMatches.length; j++) {
-                count += 1;
-            }*/
         }
         results[i].count = count;
         if(results[i].count > 0) array.push(results[i]);
@@ -329,7 +314,7 @@ function parseCSVtoJSON(dataString){
         obj.description = pcs[2];
         
         //add obj to objectArray
-        console.log("Objct is ", obj);
+        console.log("Object is ", obj);
         objectArray.push(obj);
     }
     console.warn("CSV array:\n", objectArray);
@@ -383,13 +368,32 @@ function parseXMLtoJSON(dataString){
 }//parseXMLtoJSON
 
 function writeJSONArrayToXMLFile(jsonAry){
-
+    //name and open file
+    //turn into a sring w line breaks after {, } , [, ], comma (all not in quotes), 
+    //write string to file
+    //close and download file
 }
 
 function writeJSONArrayToCSVFile(jsonAry){
-
+    //name and open file
+    //for each json obj in the ary
+        //create a quoted comma deliminated string
+        //add that string to the file followed by a line break
+    //close and download file
 }
 
 function writeJSONArrayToJSONFile(jsonAry){
+    //name and open file
+    //write header\n to file
+    //write <results>\n tag to file
+    //for each obj in the ary
+        //(concat into a string, with linebreaks after each tag)
+        //append <result> tag to string
+        //bind each property betwwen appropriate tags, and append to string
+        //append </result> to string
+        //write this string to the file
+    //write </results> to the file
+    //close and download file
+        
 
 }
