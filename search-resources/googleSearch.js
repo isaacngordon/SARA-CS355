@@ -184,6 +184,9 @@ function queryGoogle(queryString){
 
     THe following assumes the Google APi responds with an array of JSON results
     Again, makes sure to read the docs, so you know how the response is formatted:
+   
+    For any on-error, make sure to log the error (console.error()) and display an
+    appropriate window.alert() to the user if the error is relevant to them
     */
 
     //(1) and (2)
