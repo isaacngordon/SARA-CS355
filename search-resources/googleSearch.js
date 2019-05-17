@@ -1,6 +1,4 @@
 var results = [];
-var fileUploaded = false;
-var fileData = "";
 
 $(document).ready(function(err){
     var x;
@@ -21,14 +19,12 @@ $(document).ready(function(err){
         if(results.length > 0){
             let tt = document.getElementById("search-terms");
             let query = tt.value; 
-            console.warn("QUERY: \"", query,"\"\n")
-            queryResults(query);
-        } else if(!fileUploaded){
-            window.alert("You must upload a file before you can search it.");
-        }
+            console.log("QUERY: \"", query,"\"\n")
+            queryGoogle(query);
+        } 
         else {
             console.error("Search clicked, but results array is empty.");
-            window.alert("There was an searching through your document. Please try again later.");
+            window.alert("There was an error running your search request. Please try again later.");
         }
     });
 
@@ -37,50 +33,12 @@ $(document).ready(function(err){
     x.addEventListener("click", function(evt){
         if(results.length > 0){
             downloadResults(evt);
-        } else if(!fileUploaded){
-            window.alert("You must upload a file to search through before you can download results.");
-        }
+        } 
         else {
             console.error("Download clicked, but results array is empty.");
             window.alert("There was an error creating your document. Please try again later.");
         }
     });
-
-    // The event listener for the file upload
-    var upupup = document.getElementById('txtFileUpload');
-    upupup.addEventListener('change', function(e){
-        // Method that checks that the browser supports the HTML5 File API
-        function browserSupportFileUpload() {
-            var isCompatible = false;
-            if (window.File && window.FileReader && window.FileList && window.Blob) {
-            isCompatible = true;
-            }
-            return isCompatible;
-        }
-        //read the selected file
-        if (!browserSupportFileUpload()) {
-            alert('The File APIs are not fully supported in this browser!');
-        } else {
-            console.log(upupup.files);
-            const reader = new FileReader();
-            reader.onload = function(){
-                fileData = reader.result;
-                console.log("FileData:\n", fileData);
-                window.alert(fileData);
-
-                //process data
-                var t = upupup.files[0].type;
-                uploadFileData(fileData, t, results);
-                injectResults(results);
-                console.log("File upload success.");
-            }
-            reader.readAsText(upupup.files[0]);
-            
-            fileUploaded = true;
-        }//if
-        //process file
-        
-    }, false); // 38
 
     //add event listener for Select All button
     x = document.getElementById("btnSelectAll");
@@ -167,20 +125,6 @@ function injectResults(ary){
     }
 }
 
-function uploadFileData(inputString, ftype, ary){
-    var jAry = [];
-    if(ftype == "application/json"){
-        jAry = parseJSONtoJSON(inputString);
-        console.log("JSONARRAY taken at JSON to JSON",jAry);
-    }else if(ftype == "text/csv"){
-        jAry = parseCSVtoJSON(inputString);
-        console.log("JSONARRAY taken at CSV to JSON ",jAry);
-    }else if(ftype == "text/xml"){
-        jAry = parseXMLtoJSON(inputString);
-        console.log("JSONARRAY taken at XML to JSON ",jAry);
-    }
-    results = jAry;
-}
 
 function downloadResults(evt){
     //download
@@ -227,7 +171,40 @@ function downloadResults(evt){
     }
 }
 
-function queryResults(queryString){
+function queryGoogle(queryString){
+    
+
+    /* 
+    TAKING RESULTS AND DISPLAYING TO SCREEN
+    1-call google api
+    2-get results     //read docs and locate the 3 properties we care about; title, url, and description
+    3-create correct JSON jocted and add to results[] 
+    4- sort and inject results to page
+
+
+    THe following assumes the Google APi responds with an array of JSON results
+    Again, makes sure to read the docs, so you know how the response is formatted:
+    */
+
+    //(1) and (2)
+    var responseFromGoogle = ... ;              //let this be an array of json objects from google
+    results = [];                               //clears global results array
+
+    //(3)
+    for(let i = 0; i < responseFromGoogle.length; i++){
+        let obj = {};
+        obj.title = responseFromGoogle[i].?title? ;   //queston marks bc idk what it will be called
+        obj.url = responseFromGoogle[i].?url? ;
+        obj.description = responseFromGoogle[i].?descrip? ;
+        
+        results.push(obj);
+    }
+    
+   //(4)
+   orderResults(queryString);
+}
+
+function orderResults(queryString){
     //see if qwurystring is blank and show all results
     if(queryString == ""){
         injectResults(results);
@@ -294,86 +271,8 @@ function parseJSONtoJSON(dataString){
     return objectsAry;
 }
       
-function parseCSVtoJSON(dataString){
-    var objectArray = [];
-    
-    //set delim to linebreaks
-    let rowDelim = /\n|\r|\f/gi;
 
-    //split on linebreak to get different rows
-    let rows = dataString.split(rowDelim);
-    console.log("Rows", rows);
-
-    //row by row create a new json obj and add it to the objectArray
-    for(let i = 0; i < rows.length; i++){
-        if(rows[i] == "") continue;
-
-        //for each row, set new delim ' ","
-        let pieceDelim = /\"[\s]*,[\s]*\"/gi;
-
-        //split on new delim to find individual values
-        let pcs = rows[i].split(pieceDelim);
-        console.log("Pieces at row " + i, pcs);
-
-        //create new JSON obj from theses pcs
-        let obj = {};
-        obj.title = pcs[0];
-        obj.url = pcs[1];
-        obj.description = pcs[2];
-        
-        //add obj to objectArray
-        console.log("Object is ", obj);
-        objectArray.push(obj);
-    }
-    console.warn("CSV array:\n", objectArray);
-    //return object array
-    return objectArray;
-    
-}
-      
-function parseXMLtoJSON(dataString){
-    var objAry = [];
-    
-    //build relevent regexps
-    let resultsTagExp = /<results>[\s\S]*?<\/results>/i;        //matches the <results> element
-    let singleResultExp = /<result>[\s\S]*?<\/result>/ig;       //matches the <result> element
-    let titleExp = /<title>[\s\S]*?<\/title>/i;                 //matches the <title> element
-    let urlExp = /<url>[\s\S]*?<\/url>/i;                       //matches the <url> element
-    let descripExp = /<description>[\s\S]*?<\/description>/i;   //matches the <description> element
-
-    try{
-        console.log("XML Parse on string:\n", dataString);
-        let rs = dataString.match(resultsTagExp);
-        console.log("Results Total String:\n", rs);
-        let allResults = rs[0].match(singleResultExp);
-        console.log('All Results:\n', allResults);
-        
-        //for each match of <result> tags, parse its contents and add it to the document
-        for(let kk = 0; kk < allResults.length; kk++){
-            let title, url, descrip;
-            let aResult = allResults[kk];
-            console.log('A result: ', aResult);
-            
-            //get properties
-            title = aResult.match(titleExp)[0];
-            url = aResult.match(urlExp)[0];
-            descrip = aResult.match(descripExp)[0];
-
-            //remove tags
-            title = title.replace(/(<([^>]+)>)/ig,"");
-            url = url.replace(/(<([^>]+)>)/ig,"");
-            descrip = descrip.replace(/(<([^>]+)>)/ig,"");
-
-
-            let o = {'title': title, 'url': url, 'description': descrip};
-            objAry.push(o);
-        }
-        
-        return objAry;
-    } catch(err){
-        console.error("Failed to Parse XML File", err, objAry);
-    }
-}//parseXMLtoJSON
+//          -    ISAAC WILL DO BELOW     -         //
 
 function writeJSONArrayToXMLFile(jsonAry){
     //name and open file

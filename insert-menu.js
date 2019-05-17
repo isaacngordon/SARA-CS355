@@ -45,8 +45,8 @@ function generateMenu(suffix){
             <div class="dropdown-content">
                 <a href="${suffix}/search-resources/dummy-search.html">Dummy Search</a>
                 <a href="${suffix}/search-resources/file-search.html">File Search</a>
-                <a href="#">Google API Search</a>
-                <a href="#">The Real Deal Search</a>
+                <a href="${suffix}/search-resources/google-search.html">Google API Search</a>
+                <a href="${suffix}/search-resources/real-search.html">The Real Deal Search</a>
             </div>
         </li>  
         <li>

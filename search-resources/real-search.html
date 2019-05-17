@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home | SARA CS 355</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../main-style.css">
+<link rel="stylesheet" href="search-style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+<script src="../insert-menu.js"></script>
+<script src="realSearch.js"></script>
+</head>
+
+<body>
+		<div class="navbar" id="menuHere">
+				
+			</div>
+
+	<section class="design-section" id="sara-design">
+		<p class="text-art" id="sara">
+SSSSSSS      A      RRRRRR       A   
+SS          A A     R    RR     A A  
+  SSS      A   A    RRRRRR     A   A 
+     SS   AAAAAAA   R    R    AAAAAAA
+SSSSSSS   A     A   R     R   A     A
+		</p>
+		<p class="text-art" id="355">
+3333333   5555555   5555555  
+      3   5         5        
+  33333   5555555   5555555  
+      3         5         5  
+3333333   5555555   5555555 <span class="console-dash">_</span>
+		</p>
+	</section>
+
+	<form id=search-form action="fileSearchRunner.js" class="search-form">
+		
+		<section class="normal-section search-bar" id="user-panel">
+			<label>Search:</label> <input style="color: black;" type="text" id="search-terms" name="search-terms" value="new yorks best pizza">
+			<input type="button" id="btnSearch" value="Search" >
+			<br>
+			<br>
+			<div id="upload-download" class="fileupload" >
+					<fieldset>
+							<div id="selectionBtns">
+									<label id="labelDownload">Download Results:</label>
+								<button type="button" id="btnSelectAll">
+									Select All
+								</button> 
+								<select name="dropDownload" id="dropDownload">
+										
+									</select>
+								<button type="button" id="btnDownload">
+									Download Selected
+								</button> 
+							</div>
+						</fieldset>
+					</div>
+		</section>
+
+		<div id="resultsDiv"></div>
+	</form>
+
+</body>
+<script src="../menu-script.js"></script>
+</html>
