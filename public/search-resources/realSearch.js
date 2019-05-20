@@ -179,7 +179,17 @@ function downloadResults(evt){
     }
 }
 
-function queryRun(queryString){
+ /* ---------  Web Crawling  ------------ */
+ 
+ //zC3BP4HmXBu0Hp!ajtYI4QXqD%#oeszvO7R
+ 
+ function queryRun(queryString){
+    const mongodb = require('mongodb');
+    //const request = require('request');
+    //const cheerio = require('cheerio');
+    //const URL = require('url-parse');
+    
+    var db_uri = "mongodb://web355:zC3BP4HmXBu0Hp!ajtYI4QXqD%#oeszvO7R@ds157956.mlab.com:57956/heroku_gv5w78ls";
     /*
     Connect to DB
     see if query exists in DB
@@ -202,7 +212,43 @@ function queryRun(queryString){
             orderResults(results)
                 edit the function to order based on numTimesClicked first, then countOccurances         
     */
-    
+
+    //test db connection
+    mongodb.MongoClient.connect(db_uri, function(err, client) {
+
+        if(err) throw err;
+      
+        /*
+         * Get the database from the client. Nothing is required to create a
+         * new database, it is created automatically when we insert.
+         */
+      
+        let db = client.db('heroku_gv5w78ls')
+      
+        /*
+         * First we'll add a few songs. Nothing is required to create the
+         * songs collection; it is created automatically when we insert.
+         */
+      
+        let qurl_collection = db.collection('qurl');
+
+        qurl_collection.find().sort({_id : 1}).toArray(function(err, docs){
+            if(err) throw err;
+
+            let cc = 0;
+            docs.forEach(function (doc){
+                cc++;
+                console.log("Doc " + cc + ":", doc);
+            });
+
+            // Only close the connection when your app is terminating.
+            client.close(function (err) {
+                if(err) throw err;
+              });
+        });
+      });
+
+   /* 
     results = [];                               //clears global results array
 
     //
@@ -217,6 +263,7 @@ function queryRun(queryString){
    
    //(4)
    orderResults(results);
+   */
 }
 
 function orderResults(queryString){
