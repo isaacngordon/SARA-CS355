@@ -98,6 +98,11 @@ $(document).ready(function(err){
             x.innerHTML = "Select All";
         }
     })
+    let allInputs = document.querySelectorAll(".result-checkbox");
+    for(var i = 0; i < allInputs.length; i++){
+        allInputs[i].checked = false;
+    }//for
+    x.innerHTML = "Select All";
     
 });
 
@@ -188,17 +193,20 @@ function downloadResults(evt){
     var ary = [];
     //get the checkbox input elements
     var q = document.querySelectorAll(".search-result");
-
+    console.log("q= ", q);
     //add checked ones to ary
-    for(var i = 0; i < q.length; q++){
+    for(var i = 0; i < q.length; i++){
         //get the input elem
-        let ip = q[i].getElementsByClassName(".result-checkbox")[0];
+        let theChildern = q[i].children;
+        let ip = theChildern[3];
+        console.log("q[i]= ", q[i]);
+        console.log("ip: ", ip);
         //if checked
         if(ip.checked){
             //get the correct 
-            let h2 = q[i].getElementsByClassName(".result-title")[0];
-            let anchor = q[i].getElementsByClassName(".result-url")[0];
-            let p = q[i].getElementsByClassName(".result-description")[0];
+            let h2 = theChildern[0];
+            let anchor = theChildern[1];
+            let p = theChildern[2];
             
             let title = h2.innerHTML;
             let url = anchor.getAttribute("href");
@@ -208,6 +216,7 @@ function downloadResults(evt){
             ary.push(jobj);
         }
     }//for
+    console.log("ary of selects: ", ary);
 
     //get dropVal of dropdown menu
     var ddl = document.getElementById("dropDownload");
@@ -391,17 +400,10 @@ function writeJSONArrayToCSVFile(jsonAry){
 }
 
 function writeJSONArrayToJSONFile(jsonAry){
-    //name and open file
-    //write header\n to file
-    //write <results>\n tag to file
-    //for each obj in the ary
-        //(concat into a string, with linebreaks after each tag)
-        //append <result> tag to string
-        //bind each property betwwen appropriate tags, and append to string
-        //append </result> to string
-        //write this string to the file
-    //write </results> to the file
-    //close and download file
-        
-
+    var resultsString = "{" + "\n" + "results:" + "\n" + JSON.stringify(jsonAry, null, 4) + "\n" + " }";
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(resultsString);
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "search-results.json");
+    dlAnchorElem.click();      
 }
