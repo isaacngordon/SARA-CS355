@@ -2,7 +2,7 @@
 
 This project is a multi-phase search engine project for CS355 Internet and Web Technologies, taught by Professor Lawrence Tietleman at Queens College.
 
-The project can be viewed <a href="https://venus.cs.qc.cuny.edu/~gois8338/cs355/">here.</a>
+The project can be viewed <a href="https://glacial-springs-27475.herokuapp.com">here.</a>
 
 ## Search Functionalities 
 
