@@ -316,26 +316,43 @@ function parseJSONtoJSON(dataString){
 }
       
 
-//          -    ISAAC WILL DO BELOW     -         //
 
 function writeJSONArrayToXMLFile(jsonAry){
-    //name and open file
-    //turn into a sring w line breaks after {, } , [, ], comma (all not in quotes), 
-    //write string to file
-    //close and download file
+    //create results string
+    var resultsString = `<?xml version="1.0" encoding="UTF-8"?>\n<results>\n`;
+    for(let i = 0; i < jsonAry.length; i++){
+        resultsString += `  <result>\n    <title>` + jsonAry[i].title + `</title>\n`;
+        resultsString += `    <url>` + jsonAry[i].url + `</url>\n`;
+        resultsString += `    <description>` + jsonAry[i].description + `</description>\n  </result>\n`;
+    }
+    resultsString += `</results>`;
+    
+    var dataStr = "data:text/xml;charset=utf-8," + encodeURIComponent(resultsString);
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "search-results.xml");
+    dlAnchorElem.click(); 
 }
 
 function writeJSONArrayToCSVFile(jsonAry){
-    //name and open file
-    //for each json obj in the ary
-        //create a quoted comma deliminated string
-        //add that string to the file followed by a line break
-    //close and download file
+    //create string for file
+    var resultsString = "";
+    for(let i = 0; i < jsonAry.length; i++){
+        resultsString += `"` + jsonAry[i].title + `", `;
+        resultsString += `"` + jsonAry[i].url + `", `;
+        resultsString += `"` + jsonAry[i].description + `"\n`;
+    }
+    
+    var dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent(resultsString);
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "search-results.csv");
+    dlAnchorElem.click(); 
 }
 
 function writeJSONArrayToJSONFile(jsonAry){
     var resultsString = "{" + "\n" + "results:" + "\n" + JSON.stringify(jsonAry, null, 4) + "\n" + " }";
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(resultsString);
+    var dataStr = "data:application/json;charset=utf-8," + encodeURIComponent(resultsString);
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",     dataStr     );
     dlAnchorElem.setAttribute("download", "search-results.json");
