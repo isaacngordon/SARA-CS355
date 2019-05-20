@@ -1,0 +1,16 @@
+## //TODO: House Keeping
+- [ ] Contact Us: remove table and change it to h2 > label > p/a
+- [ ] Footer
+    - [ ] Site Map
+    - [ ] Addtional info?
+    - [ ] Style 
+- [ ] About
+    - [ ] Move p to right of image
+    - [ ] make responsive
+- [ ] add search bar to dummy-search.html
+- [ ] Improve search-style.css
+- [ ] Add more info to the Search Page
+- [ ] Add course info to COURSE page (find via QC resources)
+- [ ] When in hamburger mode, Submenu items need to show only when clicking text
+- [ ] Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
+- [ ] Media query changes work for desktop browser not mobile

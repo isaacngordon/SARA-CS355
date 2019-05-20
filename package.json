@@ -4,12 +4,14 @@
     "scripts": {
         "start": "node server.js"
     },
-     "repository": {
-    	"type": "git",
-    	"url": "git+https://github.com/isaacngordon/SARA-CS355.git"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/isaacngordon/SARA-CS355.git"
     },
     "dependencies": {
-        "express": "^4.16.4"
+        "cheerio": "^1.0.0-rc.3",
+        "express": "^4.17.0",
+        "mongodb": "^3.2.5"
     },
     "author": "Isaac Gordon",
     "license": "ISC"

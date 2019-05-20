@@ -22,48 +22,21 @@ As we learn how search engines function, we will use the Google Search API to of
 - HTML5
 - CSS3
 - Javascript
+- jQuery
+- MongoDB
+- Heroku
+- Ajax
+- Google Custom Search API
+- Node.js
 
 ---
 
 ## Current Issues
 
 
-## //TODO Phase 3
-- [x] all parsers type --> json
-- [ ] all parsers json --> type 
-- [ ] downloadFile
-    - [ ]get string from JSONto{ext}
-    - [ ] write string to file
-    - [ ] name output file "Sara350_file-search-results.{ext}"
 
-- [x] test orderByCount
-    - check array[] and results[] references, NEED A COPY not the references 
-- [x] test that results change on screen
-    - [x] new query changes count value
-    - [x] new query reorders array[] but not results[]
-- [x] test input file parsing to results
-- [ ] test file download for all formats
 
-## //TODO Phase 4
 
-## //TODO Phase 5
-
-## //TODO: House Keeping
-- [ ] Contact Us: remove table and change it to h2 > label > p/a
-- [ ] Footer
-    - [ ] Site Map
-    - [ ] Addtional info?
-    - [ ] Style 
-- [ ] About
-    - [ ] Move p to right of image
-    - [ ] make responsive
-- [ ] add search bar to dummy-search.html
-- [ ] Improve search-style.css
-- [ ] Add more info to the Search Page
-- [ ] Add course info to COURSE page (find via QC resources)
-- [ ] When in hamburger mode, Submenu items need to show only when clicking text
-- [ ] Hamburger menu's JS functions are attached at HTMl source instead of with addEventListner()... Recieving "TypeError: Cannot read property 'addEventListener' of null at home-script.js:4"... 
-- [ ] Media query changes work for desktop browser not mobile
 
     
     
