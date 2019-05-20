@@ -7,7 +7,7 @@
      "repository": {
     	"type": "git",
     	"url": "git+https://github.com/isaacngordon/SARA-CS355.git"
-    }
+    },
     "dependencies": {
         "express": "^4.16.4"
     },
