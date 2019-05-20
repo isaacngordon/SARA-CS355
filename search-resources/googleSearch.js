@@ -16,14 +16,13 @@ $(document).ready(function(err){
     //event listener for search request
     x = document.getElementById("btnSearch");
     x.addEventListener("click", function(){
-        if(results.length > 0){
+        try{
             let tt = document.getElementById("search-terms");
             let query = tt.value; 
             console.log("QUERY: \"", query,"\"\n")
             queryGoogle(query);
-        } 
-        else {
-            console.error("Search clicked, but results array is empty.");
+        }  catch(err) {
+            console.error("There was an error running the search", err);
             window.alert("There was an error running your search request. Please try again later.");
         }
     });
@@ -56,6 +55,11 @@ $(document).ready(function(err){
             x.innerHTML = "Select All";
         }
     })
+    let allInputs = document.querySelectorAll(".result-checkbox");
+    for(var i = 0; i < allInputs.length; i++){
+        allInputs[i].checked = false;
+    }//for
+    x.innerHTML = "Select All";
     
 });
 
@@ -132,17 +136,20 @@ function downloadResults(evt){
     var ary = [];
     //get the checkbox input elements
     var q = document.querySelectorAll(".search-result");
-
+    console.log("q= ", q);
     //add checked ones to ary
-    for(var i = 0; i < q.length; q++){
+    for(var i = 0; i < q.length; i++){
         //get the input elem
-        let ip = q[i].getElementsByClassName(".result-checkbox")[0];
+        let theChildern = q[i].children;
+        let ip = theChildern[3];
+        console.log("q[i]= ", q[i]);
+        console.log("ip: ", ip);
         //if checked
         if(ip.checked){
             //get the correct 
-            let h2 = q[i].getElementsByClassName(".result-title")[0];
-            let anchor = q[i].getElementsByClassName(".result-url")[0];
-            let p = q[i].getElementsByClassName(".result-description")[0];
+            let h2 = theChildern[0];
+            let anchor = theChildern[1];
+            let p = theChildern[2];
             
             let title = h2.innerHTML;
             let url = anchor.getAttribute("href");
@@ -152,6 +159,7 @@ function downloadResults(evt){
             ary.push(jobj);
         }
     }//for
+    console.log("ary of selects: ", ary);
 
     //get dropVal of dropdown menu
     var ddl = document.getElementById("dropDownload");
@@ -172,9 +180,54 @@ function downloadResults(evt){
 }
 
 function queryGoogle(queryString){
-    
 
-    /* 
+    var key = "AIzaSyBgCm4hEnJqZ6F2tg6MnYADf4h260rhvSw";
+    var id = "003655443167094853748%3Aywwrzj65e98";
+    var query1= queryString;
+    //var url1 = "https://www.googleapis.com/customsearch/v1/siterestrict?key="+ key + "&num=10&cx=" + id + "&start=" + 1 + "&q=" + escape(queryString) ;
+    var url = "https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyC6Pj2aW0aXgTNsenanlfa4Q6YHcHQJ6FE&cx=003655443167094853748%3Aywwrzj65e98&q=" + queryString;
+    var res;
+    //(1) and (2)
+    
+    results = [];  
+    var queryResults = ( async (url) => {
+        var tarrf = [];
+        tarrf = ($.when(
+            $.getJSON(url),
+            $.ready
+          ).done(function( data ) {
+            // Document is ready.
+            // Value of test.json is passed as `data`.
+            var myJson = data;
+            console.log("JSON OBJ with all: ", data);
+            console.log("JSON OBJ items arr: ", data[0].items);
+           // return data;
+            
+           var responseFromGoogle = data[0].items;
+           let newArr = [];                               //clears global results array
+
+           //(3)
+           for(let i = 0; i < 10; i++){
+               let obj = {};
+               obj.title = responseFromGoogle[i].title;   //queston marks bc idk what it will be called
+               obj.url = responseFromGoogle[i].link;
+               obj.description = responseFromGoogle[i].snippet;
+               console.log("obj: " , obj);
+               newArr.push(obj);
+           }
+           console.log("internal results array: " , newArr);
+           results = newArr.slice();
+           orderResults(queryString);
+           return newArr;
+          }));
+       
+        return tarrf;
+    });
+   
+    res = queryResults(url);
+    console.log("res: ", res);
+    
+    /*  
     TAKING RESULTS AND DISPLAYING TO SCREEN
     1-call google api
     2-get results     //read docs and locate the 3 properties we care about; title, url, and description
@@ -184,27 +237,15 @@ function queryGoogle(queryString){
 
     THe following assumes the Google APi responds with an array of JSON results
     Again, makes sure to read the docs, so you know how the response is formatted:
-   
-    For any on-error, make sure to log the error (console.error()) and display an
-    appropriate window.alert() to the user if the error is relevant to them
     */
 
     //(1) and (2)
-    var responseFromGoogle = ... ;              //let this be an array of json objects from google
-    results = [];                               //clears global results array
-
-    //(3)
-    for(let i = 0; i < responseFromGoogle.length; i++){
-        let obj = {};
-        obj.title = responseFromGoogle[i].?title? ;   //queston marks bc idk what it will be called
-        obj.url = responseFromGoogle[i].?url? ;
-        obj.description = responseFromGoogle[i].?descrip? ;
-        
-        results.push(obj);
-    }
+   
+    //var responseFromGoogle = ... ;              //let this be an array of json objects from google
+                                 //clears global results array
     
+
    //(4)
-   orderResults(queryString);
 }
 
 function orderResults(queryString){
@@ -293,17 +334,10 @@ function writeJSONArrayToCSVFile(jsonAry){
 }
 
 function writeJSONArrayToJSONFile(jsonAry){
-    //name and open file
-    //write header\n to file
-    //write <results>\n tag to file
-    //for each obj in the ary
-        //(concat into a string, with linebreaks after each tag)
-        //append <result> tag to string
-        //bind each property betwwen appropriate tags, and append to string
-        //append </result> to string
-        //write this string to the file
-    //write </results> to the file
-    //close and download file
-        
-
+    var resultsString = "{" + "\n" + "results:" + "\n" + JSON.stringify(jsonAry, null, 4) + "\n" + " }";
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(resultsString);
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "search-results.json");
+    dlAnchorElem.click();      
 }
