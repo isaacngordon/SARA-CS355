@@ -227,7 +227,6 @@ function orderResults(queryString){
         //counts number of occrances of re in str
         function countOccurances(str, re){
             try{
-                console.warn("Working with string " +str + " using expr " + re);
                 return str.match(re).length;
             } catch (err){
                 console.error("Cannot count occurances of " + re +" in "+ str +"\n", err);
@@ -252,7 +251,6 @@ function orderResults(queryString){
     }
     orderByCount(array);
     injectResults(array);
-    console.warn(array, results);
 }
 
 function orderByCount(jsonAry){

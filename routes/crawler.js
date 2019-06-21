@@ -1,16 +1,51 @@
-var db = require('monk')('heroku_gv5w78ls:$sSGNezL2RUC6S!qSh74J27Ku9NUSwDahtC@ds157956.mlab.com:57956/heroku_gv5w78ls')
+//db path: 'mongodb://cs355:dcm&$PeSBEv5t5IdNRzbkzKCZK3ZB&^40Mk@ds157956.mlab.com:57956/heroku_gv5w78ls'
+//cs355 pass: dcm&$PeSBEv5t5IdNRzbkzKCZK3ZB&^40Mk
+//const monk = require('monk')
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const uri = "mongodb://heroku_gv5w78ls:59j67ed88v7khav67sk8dftmh5@ds157956.mlab.com:57956/heroku_gv5w78ls";
+const client = new MongoClient(uri, { useNewUrlParser: true });
 
-function begin(query){
+function begin(query, callback){
     console.log("Query Recieved:", query);
 
-    //look for a matching past query in the db
-    //start new crawl and obtain json array of results
-    //turn json array into XML string
-        //store what needs to be stored
-    // return xml string
-    return `<results><result><title>Query: ${query}</title><url>https://www.google.com</url><description>You already know</description></result></results>`
+    function addResult(arr, result){
+        arr.push(result);
+    }
 
-}
+    try{
+        var res = "";
+        var array = [];
+        client.connect(function(err){
+            if(err){
+                console.error("ERROR", err)
+            }else{
+                const collection = client.db("heroku_gv5w78ls").collection("qurls").find();
+                console.log("Connected successfully to server");
+                // perform actions on the collection object
+                collection.forEach(function(doc, err){
+                    if(err){
+                        console.error("ERROR", err)
+                    }else{
+                        let obj = {};
+                        obj.title = doc.title;
+                        obj.url = doc.url;
+                        obj.description = doc.description;
+                        addResult(array, obj);
+                    }
+                }, function() {
+                    callback(array);
+                    client.close();
+                });
+            }//else
+        });
+    }   
+     catch(err){
+        console.error("ERROR: ", err );
+    }
+
+}//begin
+
 
 module.exports = {
     begin: begin
