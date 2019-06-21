@@ -1,0 +1,46 @@
+doctype html
+
+html
+    head
+        title Search | SARA CS 355
+        meta(charset='utf-8')
+        link(rel='stylesheet', href='../main-style.css')
+        link(rel="stylesheet" href="search-style.css")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js")
+        script(src="../insert-menu.js")
+        script(src="realSearch.js")
+    body
+        div(class="navbar" id="menuHere")
+        section(class="design-section" id="sara-design")
+		    p(class="text-art" id="sara")
+|SSSSSSS      A      RRRRRR       A   
+|SS          A A     R    RR     A A  
+|  SSS      A   A    RRRRRR     A   A 
+|     SS   AAAAAAA   R    R    AAAAAAA
+|SSSSSSS   A     A   R     R   A     A 
+		    p(class="text-art" id="355")
+|3333333   5555555   5555555  
+|      3   5         5        
+|  33333   5555555   5555555  
+|      3         5         5  
+|3333333   5555555   5555555 
+                span(class="console-dash") _
+
+	    form(id=search-form action="/search" class="search-form")
+		    section(class="normal-section search-bar" id="user-panel")
+			    label Search:
+                input(style="color: black;" type="text" id="search-terms" name="search-terms" value="new yorks best pizza")
+			    input(type="button" id="btnSearch" value="Search")
+			    br
+			    br
+			    div(id="upload-download" class="fileupload")
+					    fieldset
+							    div(id="selectionBtns")
+									label(id="labelDownload") Download Results:
+								    button(type="button" id="btnSelectAll") Select All 
+								    select(name="dropDownload" id="dropDownload") 
+								    button(type="button" id="btnDownload") Download Selected
+		    div(id="resultsDiv")
+		    a(id="downloadAnchorElem" style="display:none") 
+    script(src="../menu-script.js")

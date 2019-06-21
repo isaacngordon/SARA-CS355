@@ -27,6 +27,20 @@ $(document).ready(function(err){
         }
     });
 
+    //event listener for form submit
+    x = document.getElementById("search-form");
+    x.addEventListener("submit", function(){
+        try{
+            let tt = document.getElementById("search-terms");
+            let query = tt.value; 
+            console.log("QUERY: \"", query,"\"\n")
+            queryRun(query);
+        }  catch(err) {
+            console.error("There was an error running the search", err);
+            window.alert("There was an error running your search request. Please try again later.");
+        }
+    });
+
     //event listener for download request
     x = document.getElementById("btnDownload");
     x.addEventListener("click", function(evt){
@@ -184,86 +198,16 @@ function downloadResults(evt){
  //zC3BP4HmXBu0Hp!ajtYI4QXqD%#oeszvO7R
  
  function queryRun(queryString){
-    const mongodb = require('mongodb');
-    //const request = require('request');
-    //const cheerio = require('cheerio');
-    //const URL = require('url-parse');
-    
-    var db_uri = "mongodb://web355:zC3BP4HmXBu0Hp!ajtYI4QXqD%#oeszvO7R@ds157956.mlab.com:57956/heroku_gv5w78ls";
-    /*
-    Connect to DB
-    see if query exists in DB
-        if yes, return the queryID
-        loadByQueryID(queryID, results)
-            extract list of urlIDS from queryID
-
-    else start crawler
-        create new queryID for this query
-        start at wikipedia with search encoded in url
-        for each url, 
-            get new urlID
-            count occurances of query words, 
-            set numTimesCLicked=0, 
-            add url ID to list of IDs
-            set urlList in this query = to list of all those urlIDS
-        onFinish
-            return query ID 
-            loadByQueryID(queryID, results)
-            orderResults(results)
-                edit the function to order based on numTimesClicked first, then countOccurances         
-    */
-
-    //test db connection
-    mongodb.MongoClient.connect(db_uri, function(err, client) {
-
-        if(err) throw err;
-      
-        /*
-         * Get the database from the client. Nothing is required to create a
-         * new database, it is created automatically when we insert.
-         */
-      
-        let db = client.db('heroku_gv5w78ls')
-      
-        /*
-         * First we'll add a few songs. Nothing is required to create the
-         * songs collection; it is created automatically when we insert.
-         */
-      
-        let qurl_collection = db.collection('qurl');
-
-        qurl_collection.find().sort({_id : 1}).toArray(function(err, docs){
-            if(err) throw err;
-
-            let cc = 0;
-            docs.forEach(function (doc){
-                cc++;
-                console.log("Doc " + cc + ":", doc);
-            });
-
-            // Only close the connection when your app is terminating.
-            client.close(function (err) {
-                if(err) throw err;
-              });
-        });
-      });
-
-   /* 
-    results = [];                               //clears global results array
-
-    //
-    for(let i = 0; i < 10; i++){
-        let obj = {};
-        obj.title = responseFromGoogle[i].title;   //queston marks bc idk what it will be called
-        obj.url = responseFromGoogle[i].link;
-        obj.description = responseFromGoogle[i].snippet;
-        console.log("obj: " , obj);
-        results.push(obj);
-    }
-   
-   //(4)
-   orderResults(results);
-   */
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let dataXML = this.responseText;
+            results = parseXMLtoJSON(dataXML);
+            orderResults(queryString);
+        }
+    };
+    xhttp.open("GET", "/search?q=" + encodeURIComponent(queryString), true);
+    xhttp.send();
 }
 
 function orderResults(queryString){
@@ -375,3 +319,47 @@ function writeJSONArrayToJSONFile(jsonAry){
     dlAnchorElem.setAttribute("download", "search-results.json");
     dlAnchorElem.click();      
 }
+
+function parseXMLtoJSON(dataString){
+    var objAry = [];
+    
+    //build relevent regexps
+    let resultsTagExp = /<results>[\s\S]*?<\/results>/i;        //matches the <results> element
+    let singleResultExp = /<result>[\s\S]*?<\/result>/ig;       //matches the <result> element
+    let titleExp = /<title>[\s\S]*?<\/title>/i;                 //matches the <title> element
+    let urlExp = /<url>[\s\S]*?<\/url>/i;                       //matches the <url> element
+    let descripExp = /<description>[\s\S]*?<\/description>/i;   //matches the <description> element
+
+    try{
+        console.log("XML Parse on string:\n", dataString);
+        let rs = dataString.match(resultsTagExp);
+        console.log("Results Total String:\n", rs);
+        let allResults = rs[0].match(singleResultExp);
+        console.log('All Results:\n', allResults);
+        
+        //for each match of <result> tags, parse its contents and add it to the document
+        for(let kk = 0; kk < allResults.length; kk++){
+            let title, url, descrip;
+            let aResult = allResults[kk];
+            console.log('A result: ', aResult);
+            
+            //get properties
+            title = aResult.match(titleExp)[0];
+            url = aResult.match(urlExp)[0];
+            descrip = aResult.match(descripExp)[0];
+
+            //remove tags
+            title = title.replace(/(<([^>]+)>)/ig,"");
+            url = url.replace(/(<([^>]+)>)/ig,"");
+            descrip = descrip.replace(/(<([^>]+)>)/ig,"");
+
+
+            let o = {'title': title, 'url': url, 'description': descrip};
+            objAry.push(o);
+        }
+        
+        return objAry;
+    } catch(err){
+        console.error("Failed to Parse XML File", err, objAry);
+    }
+}//parseXMLtoJSON

@@ -33,10 +33,10 @@ SSSSSSS   A     A   R     R   A     A
 		</p>
 	</section>
 
-	<form id=search-form action="fileSearchRunner.js" class="search-form">
+	<form id=search-form onsubmit="return false;" class="search-form">
 		
 		<section class="normal-section search-bar" id="user-panel">
-			<label>Search:</label> <input style="color: black;" type="text" id="search-terms" name="search-terms" value="new yorks best pizza">
+			<label>Search:</label> <input style="color: black;" type="text" id="search-terms" name="q" value="new yorks best pizza">
 			<input type="button" id="btnSearch" value="Search" >
 			<br>
 			<br>
