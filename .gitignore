@@ -1,4 +1,5 @@
 #ignore all C++ files
 *.cpp
 node_modules/
-/.vscode/*
+*vscode/
+*a.out*
