@@ -21,7 +21,7 @@ As we learn how search engines function, we will use the Google Search API to of
 
 ### Web Crawler Based Search (Real Search Engine)
 A fully native search engine crawls the internet, indexing various webpages and storing certain information about each site. 
-```
+```diff
 - UNDER CONSTRUCTION
 ```
 
