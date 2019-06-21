@@ -1,4 +1,4 @@
 #ignore all C++ files
 *.cpp
-/node_modules
-/vscode
+/node_modules/*
+/.vscode/*
