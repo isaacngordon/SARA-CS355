@@ -9,13 +9,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/search', function(req, res, next) {
   console.log("Incoming Query: ", req.query.q); 
-  crawler.begin(req.query.q, sendRes);
-  function sendRes(arr){
+  crawler.begin(req.query.q, (arr) => {
     res.status(200);
     res.setHeader('Content-type', 'text/xml');
     xmlResult = writeJSONArrayToXMLFile(arr);
     res.send(xmlResult);
-  }
+  });
 });
 
 router.get('/login', function(req, res, next){
